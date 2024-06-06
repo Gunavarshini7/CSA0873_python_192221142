@@ -1,19 +1,12 @@
-date = input("Enter the date to be checked: ")
-c=date.split("/")
-b = list(map(int,c))
-input_year=(b[2])
-if(input_year%4 == 0):
-    if(input_year%100 == 0):
-        if(input_year%400 == 0):
-            print("%d is Leap Year" %input_year)
-        else:
-            print("%d is not the Leap Year" %input_year)
+def is_leap_year(year):
+    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+        return True
+    return False
+def find_anniversary_date(date):
+    day, month, year = map(int, date.split('/'))
+    if is_leap_year(year):
+        print(f"Given Anniversary Year: Leap Year. Next Anniversary Date: {day}/{month}/{year + 1}")
     else:
-        print("%d is the Leap Year" %input_year)
-else:
-    print("%d is not the Leap Year" %input_year)
-x=input_year%4
-if x!=0:
-    print("Previous Leap year:",input_year-x)
-else:
-    print("Next leap year:",input_year+4)
+        print(f"Given Anniversary Year: Non Leap Year. Previous Anniversary Date: {day}/{month}/{year - 1}")
+date = input("enter anniversary date")
+find_anniversary_date(date)
